@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Item</title>
+    <link rel="stylesheet" href="/public/css/style.css" />
+  </head>
+  <body>
+    <header>
+      <%- include('./partial/header')%>
+      <h1>Items</h1>
+    </header>
+
+    <!-- create -->
+    <form id="createForm" action="/item" method="POST">
+      <input type="text" name="name" placeholder="item name" required />
+      <input
+        type="text"
+        name="description"
+        placeholder="item description"
+        required
+      />
+      <button type="submit">Create</button>
+    </form>
+
+    <!-- Update -->
+    <form id="updateForm" action="/item/update" method="POST">
+      <input
+        type="text"
+        name="name"
+        id="updateName"
+        placeholder="New item name"
+        required
+      />
+      <input
+        type="text"
+        name="description"
+        id="updateDescription"
+        placeholder="item description"
+        required
+      />
+      <button type="submit">Create</button>
+    </form>
+
+    <!-- Item List -->
+
+    <ul id="itemList">
+      <% items.forEach((item)=> { %>
+      <li>
+        <span><%= item.name %> : <%= item.description %></span>
+        <button
+          onClick="editItem('<%= item._id %>','<%= item.name %>','<%= item.description %>')"
+        >
+          Edit
+        </button>
+        <button onClick="deleteItem('<%= item._id %>')">Delete</button>
+      </li>
+      <% }); %>
+    </ul>
+    <script src="/public/js/script.js"></script>
+  </body>
+</html>
