@@ -1,22 +1,28 @@
 // control Image Carousel
 function startCarousel() {
   let activeImage = 0;
-  const image = document.querySelectorAll("#carousel img");
+  const images = document.querySelectorAll("#carousel img");
 
-  function cycleImages() {
+  function startCycle() {
     if (!images[activeImage]) {
       clearInterval(intervalId);
       return;
     }
-    image[activeImage].classList.remove("active");
+
+    images[activeImage].classList.remove("active");
     activeImage = (activeImage + 1) % images.length;
-    image[activeImage].classList.add("active");
+    images[activeImage].classList.add("active");
   }
 
-  let intervalId = setInterval(cycleImages, 3000);
+  let intervalId = setInterval(startCycle, 3000);
+
+  startCycle();
 }
 // Handle Edit Requests
 
 // Handle Delete Request
 
 // Handle error from server if unable to write date
+window.onload = function () {
+  startCarousel();
+};
